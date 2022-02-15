@@ -1,5 +1,5 @@
 # Lost Ark Discord Bot
-## A Discord Bot for a Lost Ark Discorder Server
+## A Discord Bot for a Lost Ark Discord Server
 ![Discord](https://cdn.logojoy.com/wp-content/uploads/20210422095037/discord-mascot.png)
 ### Before setting up and running the bot, you must first create the bot the discord developer portal. 
 - If you are unfamilar on how to do this, here is a youtube video to help with the process: [How to Video](https://youtu.be/Uibz0iQjoC0?t=714). 
