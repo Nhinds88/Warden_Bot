@@ -1,9 +1,11 @@
+import discord
 from discord.ext import commands
+from bot_server import bot_server
 import os
 
 def main():
   client = commands.Bot(command_prefix="/")
-  token = 'xxx';
+  token = 'OTQxNDUwODk3NTYzNzQ2MzI1.YgWIeQ.GDZLyOFhdXfSjjbIvci05Q4HJhs';
   
   @client.event
   async def on_ready():
@@ -17,4 +19,5 @@ def main():
   client.run(token);
 
 if __name__== '__main__':
+  bot_server()
   main()

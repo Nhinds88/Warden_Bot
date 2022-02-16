@@ -7,24 +7,33 @@ class Guilds(commands.Cog, name="Guilds"):
   def __init__(self, bot: commands.Bot):
     self.bot = bot;
 
-  @commands.command(pass_contect=True)
+  if 'guilds' in db.keys():
+    pass;
+  else:
+    db['guilds'] = [];
+
+  @commands.command(pass_contect=True, brief='Adds the guild “guildname” to the database.', description='Adds the guild “guildname” to the database.')
   async def addguild(self, ctx: commands.Context, guildname):
+      guildList = db['guilds'];
       if guildname:
-        if guildname in db.keys():
+        if guildname in guildList:
           await ctx.send("This guild has already been added");
         else:
-            db[guildname] = guildname;
+            db['guilds'].append(guildname);
             await ctx.send(guildname+" Has been added!");
       else:
         await ctx.send("Please enter in Guild Name.");
       
-  @commands.command(pass_contect=True)
+  @commands.command(pass_contect=True, brief='Edits the guild “guildname” in the database.', description='Edits the guild “guildname” in the database.')
   async def editguild(self, ctx: commands.Context, oldguildname, newguildname):
+      guildLists = db['guilds'];
       if oldguildname:
         if newguildname:
-          if oldguildname in db.keys():
-            del db[oldguildname];
-            db[newguildname] = newguildname;
+          if oldguildname in guildLists:
+            guildLists.remove(oldguildname);
+            del db['guilds'];
+            guildLists.append(newguildname);
+            db['guilds'] = guildLists;
             await ctx.send("Guild "+oldguildname+" has been edited to "+newguildname);
           else:
             await ctx.send("No Guild named "+oldguildname+" found!");
@@ -33,11 +42,14 @@ class Guilds(commands.Cog, name="Guilds"):
       else:
         await ctx.send("Please enter in Old Guild Name.");
       
-  @commands.command(pass_contect=True)
+  @commands.command(pass_contect=True, brief='Removes the guild “guildname” from the database.', dexcription='Removes the guild “guildname” from the database.')
   async def removeguild(self, ctx: commands.Context, *, guildname):
+      guildList = db['guilds'];
       if guildname:
-        if guildname in db.keys():
-          del db[guildname];
+        if guildname in guildList:
+          del db['guilds'];
+          guildList.remove(guildname);
+          db['guilds'] = guildList;
           await ctx.send(guildname+" has been deleted!");
         else:
           await ctx.send("No guild name "+guildname+" found!");
