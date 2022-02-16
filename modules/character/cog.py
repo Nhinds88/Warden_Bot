@@ -8,18 +8,18 @@ class Character(commands.Cog, name="Character"):
     self.bot = bot;
 
   @commands.command(pass_contect=True, brief='Registers a character to the users profile.', description='Registers a character to the users profile. Guild to be selected from a list. Class and Tier to be selected from a list.')
-  async def register(self, ctx: commands.Context, charName, guild, charClass, tier, mem):
+  async def register(self, ctx: commands.Context, character_name, guild, character_class, tier, discord_username):
       guildLists = db['guilds'];
       classes = db['classes'];
       tiers = db['tiers'];
-      if charName:
+      if character_name:
         if guild:
           if guild in guildLists:
             pass;
           else:
             await ctx.send("Please add guild before registering character. See /guilds to check registered guilds.");
-          if charClass:
-            if charClass in classes:
+          if character_class:
+            if character_class in classes:
               pass;
             else:
               await ctx.send("Please use one of the offical class names. See /classes for offical names.");
@@ -28,12 +28,12 @@ class Character(commands.Cog, name="Character"):
                 pass;
               else:
                 await ctx.send("Please use one of the offical tiers. See /tiers for offical tier list.");
-              if mem:
-                if charName in db.keys():
+              if discord_username:
+                if character_name in db.keys():
                   await ctx.send("your character has already been added.");
                 else:
-                  db[charName] = [charName, guild, charClass, tier, mem];
-                  await ctx.send(charName+" has been addded!");
+                  db[character_name] = [character_name, guild, character_class, tier, discord_username];
+                  await ctx.send(character_name+" has been addded!");
               else:
                   await ctx.send("Please enter in Username.");
             else:
@@ -46,19 +46,19 @@ class Character(commands.Cog, name="Character"):
         await ctx.send("Please enter in New Character Name.");
       
   @commands.command(pass_contect=True, brief='Edits a character to the users profile.', description='Edits a character to the users profile. Guild to be selected from a list. Class and Tier to be selected from list.')
-  async def update(self, ctx: commands.Context, oldCharName, charName, guild, charClass, tier, mem):
+  async def update(self, ctx: commands.Context, old_character_name, character_name, guild, character_class, tier, discord_username):
       guildLists = db['guilds'];
       classes = db['classes'];
       tiers = db['tiers'];
-      if oldCharName:
-        if charName:
+      if old_character_name:
+        if character_name:
           if guild:
             if guild in guildLists:
               pass;
             else:
               await ctx.send("Please add guild before registering character. See /guilds to check registered guilds.");
-            if charClass:
-              if charClass in classes:
+            if character_class:
+              if character_class in classes:
                 pass;
               else:
                 await ctx.send("Please use one of the offical class names. See /classes for offical names.");
@@ -67,13 +67,13 @@ class Character(commands.Cog, name="Character"):
                   pass;
                 else:
                   await ctx.send("Please use one of the offical tiers. See /tiers for offical tier list.");
-                if mem:
-                  if oldCharName in db.keys():
-                    del db[oldCharName];
-                    db[charName] = [charName, guild, charClass, tier, mem];
-                    await ctx.send(charName+" has been updated!");
+                if discord_username:
+                  if old_character_name in db.keys():
+                    del db[old_character_name];
+                    db[character_name] = [character_name, guild, character_class, tier, discord_username];
+                    await ctx.send(character_name+" has been updated!");
                   else:
-                    await ctx.send("No character "+charName+" found.");
+                    await ctx.send("No character "+character_name+" found.");
                 else:
                   await ctx.send("Please enter in Username.");
               else:
@@ -88,43 +88,43 @@ class Character(commands.Cog, name="Character"):
         await ctx.send("Please enter in Old Character Name.");
       
   @commands.command(pass_contect=True, brief='Sets a character as the default (main) character in a users profile.', description='Sets a character as the default (main) character in a users profile.')
-  async def default(self, ctx: commands.Context, charName,  mem):
-      if charName:
-        if mem:
-          if charName in db.keys():
-            db[mem] = [charName, mem, "default"];
-            await ctx.send("Your default is set, "+mem);
+  async def default(self, ctx: commands.Context, character_name,  discord_username):
+      if character_name:
+        if discord_username:
+          if character_name in db.keys():
+            db[discord_username] = [character_name, discord_username, "default"];
+            await ctx.send("Your default is set, "+discord_username);
           else:
-            await ctx.send(charName+" not found, please register your character first.");
+            await ctx.send(character_name+" not found, please register your character first.");
         else:
           await ctx.send("Please enter in Username.");
       else:
         await ctx.send("Please enter in Character name.");
       
   @commands.command(pass_contect=True, brief='Removes a character from a users profile.', description='Removes a character from a users profile.')
-  async def remove(self, ctx: commands.Context, charName, mem):
-      if charName:
-        if mem:
-          if charName in db.keys():
-            del db[charName];
-            if mem in db.keys():
-              del db[mem];
-            await ctx.send(charName+" deleted!");
+  async def remove(self, ctx: commands.Context, character_name, discord_username):
+      if character_name:
+        if discord_username:
+          if character_name in db.keys():
+            del db[character_name];
+            if discord_username in db.keys():
+              del db[discord_username];
+            await ctx.send(character_name+" deleted!");
           else:
-            await ctx.send(charName+" Not Found!");
+            await ctx.send(character_name+" Not Found!");
         else:
           await ctx.send("Please enter in Username.");
       else:
         await ctx.send("Please enter in Character name.");
       
   @commands.command(pass_contect=True, brief='Returns who owns a character.', description='Returns who owns a character.')
-  async def whois(self, ctx: commands.Context, *, charName = None):
-      if charName:
-        if charName in db.keys():
-          charProf = db[charName]
-          await ctx.send(charName+" is "+charProf[4]);
+  async def whois(self, ctx: commands.Context, *, character_name = None):
+      if character_name:
+        if character_name in db.keys():
+          charProf = db[character_name]
+          await ctx.send(character_name+" is "+charProf[4]);
         else:
-          await ctx.send(charName+" Not found!");
+          await ctx.send(character_name+" Not found!");
       else:
         await ctx.send("please enter in a characters name.");
 
