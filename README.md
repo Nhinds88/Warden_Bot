@@ -1,5 +1,5 @@
 # Warden Bot
-## A Discord Bot designed to time and rank members in a severs voice channel.
+## A Discord Bot designed to be used by a Lost Ark Community.
 ![Discord](https://cdn.logojoy.com/wp-content/uploads/20210422095037/discord-mascot.png)
 ### Before setting up and running the bot, you must first create the bot the discord developer portal. 
 - If you are unfamilar on how to do this, here is a youtube video to help with the process: [How to Video](https://youtu.be/Uibz0iQjoC0?t=714). 
@@ -49,7 +49,7 @@
     
 - /help
     - List of command in for the bot with descriptions
-        - /help <command>
+        - /help *command*
             - Displays info on the command including the description the args requires for it to work
     
 #### If you run into any issues please reachout and I can access and address. 
