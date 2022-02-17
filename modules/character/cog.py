@@ -18,16 +18,19 @@ class Character(commands.Cog, name="Character"):
             pass;
           else:
             await ctx.send("Please add guild before registering character. See /guilds to check registered guilds.");
+            return;
           if character_class:
             if character_class in classes:
               pass;
             else:
               await ctx.send("Please use one of the offical class names. See /classes for offical names.");
+              return;
             if tier:
               if tier in tiers:
                 pass;
               else:
                 await ctx.send("Please use one of the offical tiers. See /tiers for offical tier list.");
+                return;
               if discord_username:
                 if character_name in db.keys():
                   await ctx.send("your character has already been added.");
@@ -57,16 +60,19 @@ class Character(commands.Cog, name="Character"):
               pass;
             else:
               await ctx.send("Please add guild before registering character. See /guilds to check registered guilds.");
+              return;
             if character_class:
               if character_class in classes:
                 pass;
               else:
                 await ctx.send("Please use one of the offical class names. See /classes for offical names.");
+                return;
               if tier:
                 if tier in tiers:
                   pass;
                 else:
                   await ctx.send("Please use one of the offical tiers. See /tiers for offical tier list.");
+                  return;
                 if discord_username:
                   if old_character_name in db.keys():
                     del db[old_character_name];

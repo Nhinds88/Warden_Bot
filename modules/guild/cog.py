@@ -42,7 +42,7 @@ class Guilds(commands.Cog, name="Guilds"):
       else:
         await ctx.send("Please enter in Old Guild Name.");
       
-  @commands.command(pass_contect=True, brief='Removes the guild “guildname” from the database.', dexcription='Removes the guild “guildname” from the database.')
+  @commands.command(pass_contect=True, brief='Removes the guild “guildname” from the database.', description='Removes the guild “guildname” from the database.')
   async def removeguild(self, ctx: commands.Context, *, guildname):
       guildList = db['guilds'];
       if guildname:
