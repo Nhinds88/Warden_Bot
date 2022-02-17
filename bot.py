@@ -5,7 +5,7 @@ import os
 
 def main():
   client = commands.Bot(command_prefix="/")
-  token = 'OTQzNjU4NjczMzI1MTA5MzE4.Yg2QoA.XH0hCF2JQ-a7yLna-R1RfXb0e3Y';
+  token = 'xxx';
   
   @client.event
   async def on_ready():
